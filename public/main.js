@@ -1,31 +1,26 @@
-const toggleModeButton = document.getElementById('toggle-mode');
-const body = document.body;
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('toggle-mode');
+  const body = document.body;
 
-// Function to update button text
-function updateButtonText(isDark) {
-  toggleModeButton.textContent = isDark ? 'Light Mode' : 'Dark Mode';
-}
+  console.log('Main.js loaded');
 
-// Check for saved theme preference
-const currentTheme = localStorage.getItem('theme');
-if (currentTheme === 'dark') {
-  body.classList.add('dark-mode');
-  updateButtonText(true);
-} else {
-  updateButtonText(false);
-}
-
-toggleModeButton.addEventListener('click', () => {
-  body.classList.toggle('dark-mode');
-  const isDark = body.classList.contains('dark-mode');
-  
-  // Update text
-  updateButtonText(isDark);
-  
-  // Save preference to localStorage
-  if (isDark) {
-    localStorage.setItem('theme', 'dark');
-  } else {
-    localStorage.setItem('theme', 'light');
+  // Load saved theme
+  if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark-mode');
+    btn.textContent = 'Switch to Light Mode';
   }
+
+  btn.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    
+    if (body.classList.contains('dark-mode')) {
+      localStorage.setItem('theme', 'dark');
+      btn.textContent = 'Switch to Light Mode';
+      console.log('Dark mode enabled');
+    } else {
+      localStorage.setItem('theme', 'light');
+      btn.textContent = 'Switch to Dark Mode';
+      console.log('Light mode enabled');
+    }
+  });
 });
