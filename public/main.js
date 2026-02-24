@@ -1,31 +1,26 @@
 const toggleModeButton = document.getElementById('toggle-mode');
 const body = document.body;
-const icon = toggleModeButton.querySelector('i');
 
-// Function to update icon
-function updateIcon(isDark) {
-  if (isDark) {
-    icon.classList.remove('fa-moon');
-    icon.classList.add('fa-sun');
-  } else {
-    icon.classList.remove('fa-sun');
-    icon.classList.add('fa-moon');
-  }
+// Function to update button text
+function updateButtonText(isDark) {
+  toggleModeButton.textContent = isDark ? 'Light Mode' : 'Dark Mode';
 }
 
 // Check for saved theme preference
 const currentTheme = localStorage.getItem('theme');
 if (currentTheme === 'dark') {
   body.classList.add('dark-mode');
-  updateIcon(true);
+  updateButtonText(true);
+} else {
+  updateButtonText(false);
 }
 
 toggleModeButton.addEventListener('click', () => {
   body.classList.toggle('dark-mode');
   const isDark = body.classList.contains('dark-mode');
   
-  // Update icon
-  updateIcon(isDark);
+  // Update text
+  updateButtonText(isDark);
   
   // Save preference to localStorage
   if (isDark) {
