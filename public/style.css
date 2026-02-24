@@ -1,15 +1,42 @@
-body {
-  font-family: sans-serif;
-  transition: background-color 0.3s, color 0.3s;
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --btn-bg: #eeeeee;
+  --btn-text: #333333;
 }
 
 body.dark-mode {
-  background-color: #333;
-  color: #fff;
+  --bg-color: #1a1a1a;
+  --text-color: #f0f0f0;
+  --btn-bg: #444444;
+  --btn-text: #ffffff;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
 }
 
 button {
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
   cursor: pointer;
+  font-size: 1rem;
+  margin: 10px;
+  transition: all 0.2s;
+}
+
+button:hover {
+  opacity: 0.8;
 }
