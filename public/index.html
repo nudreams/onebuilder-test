@@ -3,31 +3,72 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OneBuilder - Dark Mode Test</title>
-  <link href='style.css' rel='stylesheet'>
+  <title>FORCE UPDATE - OneBuilder</title>
+  <style>
+    :root { --bg: #ffffff; --text: #000000; }
+    body.dark-mode { --bg: #1a1a1a; --text: #ffffff; }
+    
+    body { 
+      background-color: var(--bg); 
+      color: var(--text); 
+      font-family: sans-serif; 
+      text-align: center; 
+      padding-top: 50px;
+      transition: 0.3s;
+    }
+
+    #debug-banner {
+      background: yellow;
+      color: black;
+      padding: 20px;
+      font-weight: bold;
+      font-size: 24px;
+      border: 5px solid red;
+      margin-bottom: 20px;
+    }
+
+    .toggle-btn {
+      padding: 20px 40px;
+      font-size: 20px;
+      cursor: pointer;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+    }
+  </style>
 </head>
 <body>
-  <nav>
-    <div class="container" style="border: 2px solid red; padding: 10px;">
-      <div class="logo">OneBuilder</div>
-      <button id="toggle-mode" class="theme-toggle-btn" style="display: block !important; visibility: visible !important;">Switch to Dark Mode</button>
-    </div>
-  </nav>
 
-  <section id="home" class="hero">
-    <div class="container">
-      <h1>Dark Mode Test</h1>
-      <p>If you see this, the site has been updated. Click the button above to toggle theme.</p>
-    </div>
-  </section>
+  <div id="debug-banner">
+    새 업데이트 반영됨! (이 노란색 박스가 보여야 합니다)
+  </div>
 
-  <section id="about" class="about">
-    <div class="container">
-      <h2>About Section</h2>
-      <p>This is the about section content that will also change color.</p>
-    </div>
-  </section>
+  <h1>Dark/Light Mode Test</h1>
+  <p>아래 버튼을 눌러보세요.</p>
+  
+  <button id="main-toggle" class="toggle-btn">다크모드 전환</button>
 
-  <script src="main.js"></script>
+  <script>
+    const btn = document.getElementById('main-toggle');
+    const body = document.body;
+
+    // 초기 상태 로드
+    if (localStorage.getItem('mode') === 'dark') {
+      body.classList.add('dark-mode');
+      btn.textContent = '화이트모드로 전환';
+    }
+
+    btn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('mode', 'dark');
+        btn.textContent = '화이트모드로 전환';
+      } else {
+        localStorage.setItem('mode', 'light');
+        btn.textContent = '다크모드로 전환';
+      }
+    });
+  </script>
 </body>
 </html>
