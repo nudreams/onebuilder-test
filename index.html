@@ -1,74 +1,28 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FORCE UPDATE - OneBuilder</title>
-  <style>
-    :root { --bg: #ffffff; --text: #000000; }
-    body.dark-mode { --bg: #1a1a1a; --text: #ffffff; }
-    
-    body { 
-      background-color: var(--bg); 
-      color: var(--text); 
-      font-family: sans-serif; 
-      text-align: center; 
-      padding-top: 50px;
-      transition: 0.3s;
-    }
-
-    #debug-banner {
-      background: yellow;
-      color: black;
-      padding: 20px;
-      font-weight: bold;
-      font-size: 24px;
-      border: 5px solid red;
-      margin-bottom: 20px;
-    }
-
-    .toggle-btn {
-      padding: 20px 40px;
-      font-size: 20px;
-      cursor: pointer;
-      background: #007bff;
-      color: white;
-      border: none;
-      border-radius: 10px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OneBuilder Paint - 그림 그리기</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="toolbar">
+        <div class="tool-group">
+            <input type="color" id="colorPicker" value="#000000">
+            <input type="range" id="lineWidth" min="1" max="50" value="5">
+            <span id="sizeDisplay">5px</span>
+        </div>
+        <div class="tool-group">
+            <button id="clearBtn">모두 지우기</button>
+            <button id="eraserBtn">지우개</button>
+            <button id="paintBtn" class="active">펜</button>
+            <button id="saveBtn">이미지 저장</button>
+        </div>
+    </div>
+    
+    <canvas id="canvas"></canvas>
 
-  <div id="debug-banner">
-    새 업데이트 반영됨! (이 노란색 박스가 보여야 합니다)
-  </div>
-
-  <h1>Dark/Light Mode Test</h1>
-  <p>아래 버튼을 눌러보세요.</p>
-  
-  <button id="main-toggle" class="toggle-btn">다크모드 전환</button>
-
-  <script>
-    const btn = document.getElementById('main-toggle');
-    const body = document.body;
-
-    // 초기 상태 로드
-    if (localStorage.getItem('mode') === 'dark') {
-      body.classList.add('dark-mode');
-      btn.textContent = '화이트모드로 전환';
-    }
-
-    btn.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      if (body.classList.contains('dark-mode')) {
-        localStorage.setItem('mode', 'dark');
-        btn.textContent = '화이트모드로 전환';
-      } else {
-        localStorage.setItem('mode', 'light');
-        btn.textContent = '다크모드로 전환';
-      }
-    });
-  </script>
+    <script src="main.js"></script>
 </body>
 </html>
